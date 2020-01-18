@@ -1,0 +1,6 @@
+application:
+  id: prueba
+  version: 1.0.0
+  defaultLanguage: ca_ES
+server:
+  port: 8088

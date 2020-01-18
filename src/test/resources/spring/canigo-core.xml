@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  
+
+Còpia del fitxer "cat/gencat/ctti/canigo/arch/core/config/canigo-core.xml"
+del projecte "canigo.core", però amb modificacions per tal d'efectuar els tests.
+
+1) S'exclou la configuració de "canigo.security".
+2) S'inclou configuració JPA específica.
+3) S'agrega l'escaneig declaratiu dels serveis.
+
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<import resource="classpath*:cat/gencat/ctti/canigo/arch/core/**/config/canigo-core-*.xml"/>
+	<import resource="classpath*:cat/gencat/ctti/canigo/arch/**/config/canigo-integration-*.xml"/>
+	<import resource="classpath*:cat/gencat/ctti/canigo/arch/**/config/canigo-web-*.xml"/>
+	<import resource="classpath*:cat/gencat/ctti/canigo/arch/**/config/canigo-operation-*.xml"/>
+	
+	<!-- 1
+	<import resource="classpath*:cat/gencat/ctti/canigo/arch/**/config/canigo-security-*.xml"/> 
+	-->
+	
+	<import resource="classpath*:cat/gencat/ctti/canigo/arch/**/config/canigo-support-*.xml"/>
+	<import resource="classpath*:cat/gencat/ctti/canigo/arch/**/config/canigo-persistence-*.xml"/>
+	
+	<!-- 2 -->
+	<!-- <import resource="classpath*:spring/*.xml"/> -->
+	<import resource="classpath:spring/app-custom-persistence-jpa.xml"/>
+
+	<bean class="cat.gencat.ctti.canigo.arch.core.config.CanigoCoreConfig"></bean>
+
+	<!-- 3 -->
+	<context:component-scan base-package="cat.gencat.prueba.service"/>
+
+
+</beans>
